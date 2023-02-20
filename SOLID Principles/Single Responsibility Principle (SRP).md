@@ -3,7 +3,7 @@ A class should have only one reason to change. In other words, a class should ha
 
 Example:
 If a class handles logging should only be responsible for logging and not for any other functionality, such as handling user authentication or database operations.
-
+  
 Advantages:
 - The code becomes easier to maintain and modify.
 - Less risk of introducing bugs or errors when making changes.
@@ -11,18 +11,18 @@ Advantages:
 - Allows re-using the code in other parts of the application.
 - Makes the design more modular and extensible.
 - This approach allows for greater scalability, flexibility, and resilience in distributed systems.
-
+  
 Disadvantages:
 - Dividing the system into multiple components can lead to a more complex system architecture.
 - Increases development time as more components require more time in planning, designing and testing.
 - Dividing the system into many smaller components can lead to code duplication, which increases the overall size of codebase.
 - Due to Modular design, components may need to communicate frequently with each other, which increases the communication overhead.
-
+  
 Real World Application:
 - SRP is used in the design of the Apache HTTP Server. It seperates the responsibilities of the server into seperate modules or components, such as HTTP Protocol handling, authentication and logging. Each module has a single responsibiltity, and if a change needs to be made to one of the modules, it can be done without affecting the others.
 - Microservice Architectures, where each service is responsible for a single business capability or functionality, also uses SRP. By applying SRP, each microservice has a clearly defined responsibilty, and changes to one service can be made without affecting the others.
 
-Code:
+Code:  
 // The "Logger" class represents a logging utility that writes log messages to a file at the specified "filePath".
 ```
 public class Logger {
