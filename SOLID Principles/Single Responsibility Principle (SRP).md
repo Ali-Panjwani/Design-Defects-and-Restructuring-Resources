@@ -23,10 +23,10 @@ Real World Application:
 - Microservice Architectures, where each service is responsible for a single business capability or functionality, also uses SRP. By applying SRP, each microservice has a clearly defined responsibilty, and changes to one service can be made without affecting the others.
 
 Code:
-// The "Logger" class represents a logging utility that writes log messages to a file at the specified "filePath"
-
+// The "Logger" class represents a logging utility that writes log messages to a file at the specified "filePath".
+```
 public class Logger {
-	
+
 	private String filePath;
 	
 	public Logger(String filePath) { //Constructor
@@ -43,19 +43,20 @@ public class Logger {
 		}
 	}
 }
+```
 
 Questions:
-- How does SRP makes a System more Scalable ?
+- How does SRP makes a System more Scalable ?  
 Scalability refers to a system's ability to handle increasing amounts of data, traffic, or workload with sacrificing performance or availability.
 This principle helps to make a system more scalable by promoting a modular, component-based design and seperation of concerns. Modular design allows for the system to be distributed across multiple nodes or servers. Each module can be deployed on a seperate server or cluster.
 This approach can help to improve the system's performance and availability, as more resources can be added as needed to handle increasing demand.
 
-- How does SRP adds more resilience to the distributed systems ?
+- How does SRP adds more resilience to the distributed systems ?  
 It can contribute to the resilience of distributed systems by helping to isolate faults and failures to specific components or modules.
 Distributed systems are spread across multiple nodes or servers. By following SRP, the responsibilities of each module are clearly defined, and each module has a well-defined interface with the others. It makes it easier to isolate problems and troubleshoot issues when they arise.
 It also contributes to resilience of distributed systems by enabling the use of redundancy and failover mechanisms. It becomes easier to replicate critical components across multiple servers or nodes. This approach can improve the system's availability and ensure that the system remains operational even if one or more components fail.
 
-- How does SRP supports flexibility ?
+- How does SRP supports flexibility ?  
 Flexibility refers to the ability of a system to adapt to changing requirements and conditions.
 Modular, component-based design can also improve code reuse, which can lead to more efficient development and maintenance.
 When the system is modular, developers can build new features or components on top of existing one.
