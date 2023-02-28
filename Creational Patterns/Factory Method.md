@@ -88,3 +88,11 @@ The advantage of using the Factory pattern in conjunction with the interfaces is
 In the example, the `MyApplication` class implements the `Application` abstract class, which defines the `createDocument()` method that returns a `Document` object. However, the implementation of the `Document` abstract class is hidden from the `MyApplication` class, and instead, the `createDocument()` method relies on a concrete factory class to create the `Document` object.  
 
 By using a factory to create objects, the code becomes more flexible and extensible. If we need to add a new type of `Document`, we can create a new class that implements the `Document` interface and a new factory class that creates instances of the new `Document` class. We don't have to modify the `MyApplication` class or any other parts of the code that rely on the `Document` interface, making the code easier to maintain and modify.
+
+&nbsp;
+
+When to use:  
+Where you have a class that needs to create objects, but you don't want to tie that class to a specific object or class.  
+By using a Factory Method, you can allow subclasses to decide which class to instantiate, without requiring the parent class to know the specific details of how each object is created.
+
+From the example, this design allows new document types to be added in the future by creating new subclasses of `Application` and overriding the `createDocument()` method, without modifying the existing `Application class`.
