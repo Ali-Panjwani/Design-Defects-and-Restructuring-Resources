@@ -4,5 +4,5 @@ The repository "Design Defects and Restructuring Resources" contains resources r
 References:
 Books:  
 - Head First Design Patterns by Eric Freeman and Elisabeth Freeman
-- Design Patterns by Erich Gamma (Gang of Four)
+- Design Patterns by Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides (Gang of Four)
 - Refactoring: Improving the Design of Existing Code by Martin Fowler, Kent Beck, John Brant, William Opdyke, Don Roberts
