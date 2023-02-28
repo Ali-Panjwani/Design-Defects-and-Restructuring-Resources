@@ -9,6 +9,8 @@
 
 4. Extension (Inheritance): A relationship between two or more classes where one class inherits the properties and methods of another class.  
 
+![Diagrams](https://1.bp.blogspot.com/-VL_9cjhwEE4/UvJN__IvaBI/AAAAAAAABCc/IkDmShgM-Yc/s1600/Association,+Composition+UML.JPG)
+
 &nbsp;
 
 - Object Oriented Design Rules:  
