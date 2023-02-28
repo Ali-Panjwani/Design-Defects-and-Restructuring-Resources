@@ -72,12 +72,12 @@ public class Notification {
     _email.SendEmail();
   }
 }
-```
-
+```  
 - Issues in the code:
 1. Tight coupling: Difficult to replace or modify the Email class without affecting the Notification class.
-2. Lack of abstraction: Email class exposes its implementation details to the Notification class, violating the principle of abstraction. (Exposes Implementation ->  other classes or components can directly access or manipulate the inner workings of that class.)
+2. Lack of abstraction: Email class exposes its implementation details to the Notification class, violating the principle of abstraction. (Exposes Implementation ->  other classes or components can directly access or manipulate the inner workings of that class.)  
 
+&nbsp;
 
 - Another aproach is:
 ```
@@ -121,8 +121,76 @@ public class Notification {
     _iMessageService.SendMessage();
   }
 }
+
+static void Main(string[] args) {
+    IMessageService emailService = new Email();
+    Notification notification = new Notification(emailService);
+    notification.PromotionalNotification();
+}
 ```
 In the code above, the `Notification` class depends on an abstraction `IMessageService` rather than a concrete implementation `Email`. The dependency is injected into the `Notification` class through its constructor `public Notification(IMessageService _messageService)`, which makes it easier to modify or extend the code without affecting other parts of the system.  
 
 
 The `PromotionalNotification` method still works the same way, as it calls the `SendMessage` method on the `IMessageService` object.
+
+&nbsp;
+
+- Property Injection:
+```
+public class Notification {
+  public IMessageService MessageService {
+    get;
+    set;
+  }
+
+  public void PromotionalNotification() {
+    if (MessageService == null) {
+      // some error message
+    } else {
+      MessageService.SendMessage();
+    }
+  }
+}
+
+public static void main(String[] args) {
+    Notification notification = new Notification();
+    notification.setMessageService(new Email());
+    notification.promotionalNotification();
+}
+```
+The use of the MessageService property allows for more flexibility in setting the service at runtime. This means that the implementation can be changed without recompiling the code, which makes it easier to maintain and update.
+
+&nbsp;
+
+- Method Injection:
+```
+public class Email : IMessageService {
+  public void SendMessage() {
+    // code for the mail send
+  }
+}
+
+public class SMS : IMessageService {
+  public void SendMessage() {
+    // code for the sms send
+  }
+}
+
+public class Notification {
+  public void PromotionalNotification(IMessageService _messageService) {
+    _messageService.SendMessage();
+  }
+}
+
+public static void main(String[] args) {
+    Notification notification = new Notification();
+    
+    IMessageService emailService = new Email();
+    notification.PromotionalNotification(emailService);
+
+    IMessageService smsService = new SMS();
+    notification.PromotionalNotification(smsService);
+}
+```
+Better separation of concerns and adherence to the Single Responsibility Principle lead to modular and easy-to-reason-about code by separating the responsibility of object creation from their use.
+
