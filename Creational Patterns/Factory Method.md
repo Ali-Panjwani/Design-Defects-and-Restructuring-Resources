@@ -1,8 +1,5 @@
 Definition:  
 Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.  
-
-&nbsp;
-
 Also Known As: Virtual Constructor
 
 &nbsp;
@@ -82,3 +79,12 @@ public class Main {
 }
 ```
 
+The `Document` and `Application` abstract classes define the required methods that need to be implemented by the concrete classes. The `MyDocument` class implements the Document interface and provides the actual implementation for the methods.  
+
+Similarly, the `MyApplication` class implements the `Application` abstract class and provides the implementation for the `createDocument()`, `newDocument()`, and `openDocument()` methods.  
+
+The advantage of using the Factory pattern in conjunction with the interfaces is that it provides a way to create objects without having to know the specific class or implementation details of those objects.
+
+In the example, the `MyApplication` class implements the `Application` abstract class, which defines the `createDocument()` method that returns a `Document` object. However, the implementation of the `Document` abstract class is hidden from the `MyApplication` class, and instead, the `createDocument()` method relies on a concrete factory class to create the `Document` object.  
+
+By using a factory to create objects, the code becomes more flexible and extensible. If we need to add a new type of `Document`, we can create a new class that implements the `Document` interface and a new factory class that creates instances of the new `Document` class. We don't have to modify the `MyApplication` class or any other parts of the code that rely on the `Document` interface, making the code easier to maintain and modify.
