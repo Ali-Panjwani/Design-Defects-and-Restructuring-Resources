@@ -158,7 +158,7 @@ public static void main(String[] args) {
     notification.promotionalNotification();
 }
 ```
-The use of the MessageService property allows for more flexibility in setting the service at runtime. This means that the implementation can be changed without recompiling the code, which makes it easier to maintain and update.
+The use of the `MessageService` property allows for more flexibility in setting the service at runtime. This means that the implementation can be changed without recompiling the code, which makes it easier to maintain and update.
 
 &nbsp;
 
@@ -192,5 +192,6 @@ public static void main(String[] args) {
     notification.PromotionalNotification(smsService);
 }
 ```
-Better separation of concerns and adherence to the Single Responsibility Principle lead to modular and easy-to-reason-about code by separating the responsibility of object creation from their use.
+Better separation of concerns and adherence to the Single Responsibility Principle lead to modular and easy-to-reason-about code by separating the responsibility of object creation from their use.  
 
+In this code, the creation of the `Email` service and the `SMS` service objects are separated from their use in the `Notification` class. The `Notification` class has a single responsibility of sending promotional notifications, and it does not concern itself with how the notifications are being sent.
