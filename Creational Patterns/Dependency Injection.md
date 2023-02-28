@@ -1,3 +1,8 @@
+Definition:  
+Dependency Injection is a design pattern in which an object's dependencies are provided externally instead of being created internally by the object itself. The purpose of this pattern is to promote loose coupling, improve testability, and increase modularity in an application.
+
+&nbsp;
+
 Scenario:  
 Class A uses Class B => Class A depends on services of Class B  
 Implementation alternatives:
@@ -195,3 +200,14 @@ public static void main(String[] args) {
 Better separation of concerns and adherence to the Single Responsibility Principle lead to modular and easy-to-reason-about code by separating the responsibility of object creation from their use.  
 
 In this code, the creation of the `Email` service and the `SMS` service objects are separated from their use in the `Notification` class. The `Notification` class has a single responsibility of sending promotional notifications, and it does not concern itself with how the notifications are being sent.
+
+&nbsp;
+
+When to use:  
+Dependency Injection is commonly used when a class has dependencies on other objects or services, and we want to decouple the class from those dependencies.  
+It is particularly useful when:
+
+1. The dependencies of a class may change over time.
+2. The class has many dependencies and it is difficult to manage them manually.
+3. The class needs to be tested in isolation from its dependencies.
+4. The class has dependencies that are expensive to create or obtain.
