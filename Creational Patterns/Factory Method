@@ -1,0 +1,84 @@
+Definition:  
+Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.  
+
+&nbsp;
+
+Also Known As: Virtual Constructor
+
+&nbsp;
+
+Scenario:
+- Consider a design framework where abstract classes Class A and Class D have a
+aggregation relation whereby Class A creates instances of Class D.
+- Since both classes A and D are abstract, they will be subclassed to provide
+implementation.
+- Since the knowledge about which subclass of D to instantiate is specific to subclass of A, at
+an abstract level A cannot predict which subclass of D to create.
+
+&nbsp;
+
+Solution:  
+Code:
+```
+// Abstract class for a document
+abstract class Document {
+  public abstract void open();
+  public abstract void save();
+  public abstract void close();
+  public abstract void revert();
+}
+
+// Concrete class for a document of type MyDocument
+class MyDocument extends Document {
+  public void open() {
+    System.out.println("Opening MyDocument...");
+  }
+
+  public void save() {
+    System.out.println("Saving MyDocument...");
+  }
+
+  public void close() {
+    System.out.println("Closing MyDocument...");
+  }
+  
+  public void revert() {
+    System.out.println("Reverting MyDocument...");
+  }
+}
+
+// Abstract class for an application
+abstract class Application {
+  public abstract Document createDocument();
+  public abstract void newDocument();
+  public abstract void openDocument();
+}
+
+// Subclass of Application that realizes MyDocument
+class MyApplication extends Application {
+  public Document createDocument() {
+    return new MyDocument();
+  }
+  
+  public void newDocument() {
+    Document doc = createDocument();
+    doc.save();
+    doc.close();
+    }
+
+  public void openDocument() {
+    Document doc = createDocument();
+    doc.open();
+  }
+}
+
+// Example usage
+public class Main {
+  public static void main(String[] args) {
+    Application myApp = new MyApplication();
+    myApp.newDocument();
+    myApp.openDocument();
+  }
+}
+```
+
