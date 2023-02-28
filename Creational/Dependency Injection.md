@@ -1,3 +1,4 @@
+Scenario:  
 Class A uses Class B => Class A depends on services of Class B  
 Implementation alternatives:
 - Class A composes Class B and creates instance of class B -> That’s tightly coupled; Class A knows a LOT about class B
@@ -47,3 +48,81 @@ ServiceB serviceB = new ClassB(); //Instantiating the Object
 ClassA classA = new ClassA(serviceB);
 classA.doSomething();
 ```
+(For a better understanding of Object Oriented Design Rules refer to: https://github.com/Ali-Panjwani/Design-Defects-and-Restructuring-Resources/blob/main/Object%20Oriented%20Concepts.md)
+
+&nbsp;
+
+Problem:  
+- Example Code:  
+```
+public class Email {
+  public void SendEmail() {
+    // code
+  }
+}
+
+public class Notification {
+  private Email _email;
+  
+  public Notification() {
+    _email = new Email();
+  }
+
+  public void PromotionalNotification() {
+    _email.SendEmail();
+  }
+}
+```
+
+- Issues in the code:
+1. Tight coupling: Difficult to replace or modify the Email class without affecting the Notification class.
+2. Lack of abstraction: Email class exposes its implementation details to the Notification class, violating the principle of abstraction. (Exposes Implementation ->  other classes or components can directly access or manipulate the inner workings of that class.)
+
+
+- Another aproach is:
+```
+public interface IMessageService {
+  void SendMessage();
+}
+
+public class Email : IMessageService {
+  public void SendMessage() {
+    // code
+  }
+}
+
+public class Notification {
+  private IMessageService _iMessageService;
+
+  public Notification() {
+    _iMessageService = new Email();
+  }
+  
+  public void PromotionalNotification() {
+    _iMessageService.SendMessage();
+  }
+}
+```
+But still the problem is Lack of abstraction.
+
+&nbsp;
+
+Possible Solutions:
+- Contructor Injection:
+```
+public class Notification {
+  private IMessageService _iMessageService;
+
+  public Notification(IMessageService _messageService) {
+    this._iMessageService = _messageService;
+  }
+
+  public void PromotionalNotification() {
+    _iMessageService.SendMessage();
+  }
+}
+```
+In the code above, the `Notification` class depends on an abstraction `IMessageService` rather than a concrete implementation `Email`. The dependency is injected into the `Notification` class through its constructor `public Notification(IMessageService _messageService)`, which makes it easier to modify or extend the code without affecting other parts of the system.  
+
+
+The `PromotionalNotification` method still works the same way, as it calls the `SendMessage` method on the `IMessageService` object.
